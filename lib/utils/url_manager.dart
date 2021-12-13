@@ -24,4 +24,8 @@ class UrlManager {
     upcoming = page;
     return "https://api.themoviedb.org/3/movie/upcoming?api_key=${UrlManager.key}&language=en-US&page=$nowPlaying";
   }
+
+  static String getMovie({required int id}) {
+    return "https://api.themoviedb.org/3/movie/$id?api_key=${UrlManager.key}&language=en-US&append_to_response=videos,credits";
+  }
 }

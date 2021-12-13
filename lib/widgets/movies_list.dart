@@ -50,11 +50,11 @@ class MoviesList extends StatelessWidget {
                 ),
               );
             }
-            print(movies.length);
             return SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               physics: const ClampingScrollPhysics(),
               child: Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: movies.map((e) => Movie(movie: e)).toList(),
               ),
             );
