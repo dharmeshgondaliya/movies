@@ -71,14 +71,19 @@ class Movieinfo extends StatelessWidget {
                                           Expanded(
                                             child: Column(
                                               children: [
-                                                const Text("Vote Average",
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        fontWeight:
-                                                            FontWeight.w500)),
+                                                const Text(
+                                                  "Vote Average",
+                                                  style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontFamily: "capriola",
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
+                                                ),
                                                 Text(
                                                   moviedata['vote_average']
                                                       .toString(),
+                                                  style: const TextStyle(
+                                                      fontFamily: "carme"),
                                                 )
                                               ],
                                             ),
@@ -91,15 +96,20 @@ class Movieinfo extends StatelessWidget {
                                                 const Text("Release Date",
                                                     style: TextStyle(
                                                         fontSize: 15,
+                                                        fontFamily: "capriola",
                                                         fontWeight:
                                                             FontWeight.w500)),
                                                 Text(
                                                   moviedata['release_date']
                                                       .toString(),
+                                                  style: const TextStyle(
+                                                      fontFamily: "carme"),
                                                 ),
                                                 if ("${moviedata['status']}"
                                                     .isNotEmpty)
-                                                  Text("${moviedata['status']}")
+                                                  Text("${moviedata['status']}",
+                                                      style: const TextStyle(
+                                                          fontFamily: "carme"))
                                               ],
                                             ),
                                           ),
@@ -111,41 +121,20 @@ class Movieinfo extends StatelessWidget {
                                                 const Text("Popularity",
                                                     style: TextStyle(
                                                         fontSize: 15,
+                                                        fontFamily: "capriola",
                                                         fontWeight:
                                                             FontWeight.w500)),
                                                 Text(
-                                                  moviedata['popularity']
-                                                      .toString(),
-                                                )
+                                                    moviedata['popularity']
+                                                        .toString(),
+                                                    style: const TextStyle(
+                                                        fontFamily: "carme"))
                                               ],
                                             ),
                                           ),
                                       ],
                                     ),
                                     const SizedBox(height: 20),
-                                    if ("${moviedata['overview']}".isNotEmpty)
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          const DescriptionLable(
-                                              lable: "Description"),
-                                          const SizedBox(height: 15),
-                                          DescriptionText(
-                                              text: "${moviedata['overview']}"),
-                                          const SizedBox(height: 30)
-                                        ],
-                                      ),
-                                    if (moviedata['credits']['cast'] != null &&
-                                        moviedata['credits']['cast'].isNotEmpty)
-                                      Column(
-                                        children: [
-                                          CastAndCrewList(
-                                              cast: moviedata['credits']
-                                                  ['cast']),
-                                          const SizedBox(height: 30)
-                                        ],
-                                      ),
                                     if (moviedata['genres'] != null &&
                                         moviedata['genres'].isNotEmpty)
                                       Row(
@@ -191,7 +180,31 @@ class Movieinfo extends StatelessWidget {
                                             ],
                                           ),
                                         ],
-                                      )
+                                      ),
+                                    const SizedBox(height: 20),
+                                    if ("${moviedata['overview']}".isNotEmpty)
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const DescriptionLable(
+                                              lable: "Description"),
+                                          const SizedBox(height: 15),
+                                          DescriptionText(
+                                              text: "${moviedata['overview']}"),
+                                          const SizedBox(height: 30)
+                                        ],
+                                      ),
+                                    if (moviedata['credits']['cast'] != null &&
+                                        moviedata['credits']['cast'].isNotEmpty)
+                                      Column(
+                                        children: [
+                                          CastAndCrewList(
+                                              cast: moviedata['credits']
+                                                  ['cast']),
+                                          const SizedBox(height: 30)
+                                        ],
+                                      ),
                                   ],
                                 ),
                               )

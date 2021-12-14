@@ -58,6 +58,7 @@ class Movie extends StatelessWidget {
               textAlign: TextAlign.center,
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontFamily: "carme"),
             ),
           ],
         ),

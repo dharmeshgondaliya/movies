@@ -10,10 +10,10 @@ class HomeLable extends StatelessWidget {
     return Text(
       title,
       style: const TextStyle(
-        color: Colors.black,
-        fontSize: 20,
-        fontWeight: FontWeight.bold,
-      ),
+          color: Colors.black,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+          fontFamily: "museo700"),
     );
   }
 }

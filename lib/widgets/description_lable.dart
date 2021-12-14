@@ -11,6 +11,7 @@ class DescriptionLable extends StatelessWidget {
       lable,
       style: const TextStyle(
         fontSize: 19,
+        fontFamily: "capriola",
         fontWeight: FontWeight.w500,
         color: Flags.descriptionLable,
       ),
