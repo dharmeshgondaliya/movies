@@ -11,12 +11,11 @@ import 'package:movies/widgets/movie_info_shimmer.dart';
 
 class Movieinfo extends StatelessWidget {
   Movieinfo({Key? key}) : super(key: key);
-  late Map movie = {};
   Map moviedata = {};
 
   @override
   Widget build(BuildContext context) {
-    movie = ModalRoute.of(context)!.settings.arguments as Map;
+    //ModalRoute.of(context)!.settings.arguments as Map;
     return WillPopScope(
       onWillPop: () async {
         Navigator.of(context).pop();

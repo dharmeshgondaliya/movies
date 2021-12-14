@@ -28,4 +28,8 @@ class UrlManager {
   static String getMovie({required int id}) {
     return "https://api.themoviedb.org/3/movie/$id?api_key=${UrlManager.key}&language=en-US&append_to_response=videos,credits";
   }
+
+  static String getPerson({required int id}) {
+    return "https://api.themoviedb.org/3/person/$id?api_key=${UrlManager.key}&language=en-US&append_to_response=external_ids,movie_credits";
+  }
 }
