@@ -26,6 +26,9 @@ class MoviesList extends StatelessWidget {
       case Flags.upcoming:
         return apiManager.getMovieList(
             UrlManager.getUpcoming(page: UrlManager.upcoming + 1));
+      case Flags.discover:
+        return apiManager.getMovieList(
+            UrlManager.getDiscover(page: UrlManager.discover + 1));
     }
   }
 
@@ -38,6 +41,9 @@ class MoviesList extends StatelessWidget {
           stream: getStreamData(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
+              if (movie == Flags.discover && UrlManager.discover == 1) {
+                movies.clear();
+              }
               movies.addAll(snapshot.data as List);
             }
             if (movies.isEmpty) {
@@ -50,12 +56,25 @@ class MoviesList extends StatelessWidget {
                 ),
               );
             }
-            return SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              physics: const ClampingScrollPhysics(),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: movies.map((e) => Movie(movie: e)).toList(),
+            // return SingleChildScrollView(
+            //   scrollDirection: Axis.horizontal,
+            //   physics: const ClampingScrollPhysics(),
+            //   child: Row(
+            //     crossAxisAlignment: CrossAxisAlignment.start,
+            //     children: movies.map((e) => Movie(movie: e)).toList(),
+            //   ),
+            // );
+            return ConstrainedBox(
+              constraints: const BoxConstraints(
+                minWidth: double.infinity,
+                maxWidth: double.infinity,
+                minHeight: 250,
+                maxHeight: 325,
+              ),
+              child: ListView.builder(
+                itemCount: movies.length,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context, index) => Movie(movie: movies[index]),
               ),
             );
           },

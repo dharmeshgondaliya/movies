@@ -6,7 +6,7 @@ void main() {
     MaterialApp(
       title: "Movies",
       debugShowCheckedModeBanner: false,
-      initialRoute: Routes.homeScreen,
+      initialRoute: Routes.splashScreen,
       routes: Routes.routes,
     ),
   );

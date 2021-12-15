@@ -15,14 +15,14 @@ class Movieinfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //ModalRoute.of(context)!.settings.arguments as Map;
+    String id = ModalRoute.of(context)!.settings.arguments as String;
     return WillPopScope(
       onWillPop: () async {
         Navigator.of(context).pop();
         return true;
       },
       child: StreamBuilder(
-        stream: ApiManager().getMovie(UrlManager.getMovie(id: 2)),
+        stream: ApiManager().getMovie(UrlManager.getMovie(id: int.parse(id))),
         builder: (context, snapshot) {
           if (snapshot.hasData) moviedata = snapshot.data as Map;
           return Scaffold(

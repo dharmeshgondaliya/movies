@@ -10,12 +10,12 @@ class Movie extends StatelessWidget {
   Widget build(BuildContext context) {
     String img = "";
     img = movie['poster_path'];
-    if (img.isEmpty) {
+    if (img.isEmpty || img == null) {
       img = movie['backdrop_path'];
     }
     return GestureDetector(
-      onTap: () =>
-          Navigator.pushNamed(context, Routes.movieInfo, arguments: movie),
+      onTap: () => Navigator.pushNamed(context, Routes.movieInfo,
+          arguments: movie['id'].toString()),
       child: Container(
         width: 175,
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
@@ -25,7 +25,7 @@ class Movie extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             img.isNotEmpty
                 ? ClipRRect(

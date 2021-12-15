@@ -15,4 +15,10 @@ class ApiManager {
     Map data = json.decode(res.body);
     yield data;
   }
+
+  Stream<List> getList(String url) async* {
+    var res = await http.get(Uri.parse(url));
+    List data = json.decode(res.body);
+    yield data;
+  }
 }
