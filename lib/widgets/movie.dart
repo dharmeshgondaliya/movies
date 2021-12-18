@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:movies/utils/flags.dart';
 import 'package:movies/utils/routes.dart';
 
 class Movie extends StatelessWidget {
@@ -21,7 +22,7 @@ class Movie extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
         margin: const EdgeInsets.only(right: 15),
         decoration: BoxDecoration(
-          border: Border.all(width: 0.5),
+          border: Border.all(width: 0.5, color: Flags.decorationColor),
           borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
         child: Column(
@@ -35,7 +36,7 @@ class Movie extends StatelessWidget {
                       fit: BoxFit.contain,
                       errorWidget: (context, str, error) {
                         return const SizedBox(
-                          height: 250,
+                          height: 225,
                           child: Center(
                             child: FlutterLogo(),
                           ),
@@ -43,7 +44,7 @@ class Movie extends StatelessWidget {
                       },
                       progressIndicatorBuilder: (context, str, progress) {
                         return const SizedBox(
-                          height: 250,
+                          height: 225,
                           child: Center(
                             child: CircularProgressIndicator(),
                           ),

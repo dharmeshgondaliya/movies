@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:movies/utils/flags.dart';
 
 class HomeLable extends StatelessWidget {
   const HomeLable({Key? key, required this.title}) : super(key: key);
@@ -10,10 +11,11 @@ class HomeLable extends StatelessWidget {
     return Text(
       title,
       style: const TextStyle(
-          color: Colors.black,
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-          fontFamily: "museo700"),
+        color: Flags.descriptionLable,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        fontFamily: "museo700",
+      ),
     );
   }
 }

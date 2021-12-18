@@ -56,24 +56,17 @@ class MoviesList extends StatelessWidget {
                 ),
               );
             }
-            // return SingleChildScrollView(
-            //   scrollDirection: Axis.horizontal,
-            //   physics: const ClampingScrollPhysics(),
-            //   child: Row(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     children: movies.map((e) => Movie(movie: e)).toList(),
-            //   ),
-            // );
             return ConstrainedBox(
               constraints: const BoxConstraints(
                 minWidth: double.infinity,
                 maxWidth: double.infinity,
                 minHeight: 250,
-                maxHeight: 325,
+                maxHeight: 300,
               ),
               child: ListView.builder(
                 itemCount: movies.length,
                 scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
                 itemBuilder: (context, index) => Movie(movie: movies[index]),
               ),
             );

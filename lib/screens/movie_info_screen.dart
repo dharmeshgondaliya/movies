@@ -39,6 +39,26 @@ class Movieinfo extends StatelessWidget {
                                 imageUrl:
                                     "https://image.tmdb.org/t/p/original/${moviedata['backdrop_path']}",
                                 width: double.infinity,
+                                errorWidget: (context, str, error) =>
+                                    const SizedBox(
+                                  height: 190,
+                                  width: double.infinity,
+                                  child: Center(
+                                    child: FlutterLogo(
+                                      size: 100,
+                                    ),
+                                  ),
+                                ),
+                                progressIndicatorBuilder:
+                                    (context, str, progress) => const SizedBox(
+                                  width: double.infinity,
+                                  height: 190,
+                                  child: Center(
+                                    child: CircularProgressIndicator(
+                                      color: Flags.decorationColor,
+                                    ),
+                                  ),
+                                ),
                                 fit: BoxFit.fill,
                               ),
                               const SizedBox(height: 20),
