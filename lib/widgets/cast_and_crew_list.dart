@@ -24,7 +24,8 @@ class CastAndCrewList extends StatelessWidget {
           itemBuilder: (context, index) {
             if (cast[index]['profile_path'] == null) return const SizedBox();
             return GestureDetector(
-              onTap: () => Navigator.pushNamed(context, Routes.actorInfo),
+              onTap: () => Navigator.pushNamed(context, Routes.actorInfo,
+                  arguments: cast[index]['id'].toString()),
               child: Container(
                 width: 175,
                 padding:

@@ -15,13 +15,14 @@ class Actorinfo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String id = ModalRoute.of(context)!.settings.arguments as String;
     return WillPopScope(
       onWillPop: () async {
         Navigator.of(context).pop();
         return true;
       },
       child: StreamBuilder(
-        stream: ApiManager().getMovie(UrlManager.getPerson(id: 2)),
+        stream: ApiManager().getMovie(UrlManager.getPerson(id: int.parse(id))),
         builder: (context, snapshot) {
           if (snapshot.hasData) actor = snapshot.data as Map;
           return Scaffold(
@@ -89,15 +90,18 @@ class Actorinfo extends StatelessWidget {
                                               const Text(
                                                 "Birthday",
                                                 style: TextStyle(
-                                                    fontSize: 18,
-                                                    fontWeight: FontWeight.w500,
-                                                    fontFamily: "capriola"),
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.w500,
+                                                  fontFamily: "capriola",
+                                                  color: Flags.descriptionLable,
+                                                ),
                                               ),
                                               Text(
                                                 actor['birthday'],
                                                 style: const TextStyle(
                                                   fontFamily: "carme",
                                                   fontSize: 15,
+                                                  color: Flags.descriptiontext,
                                                 ),
                                               )
                                             ],
@@ -107,36 +111,42 @@ class Actorinfo extends StatelessWidget {
                                             mainAxisAlignment:
                                                 MainAxisAlignment.end,
                                             children: [
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 5),
-                                                child: Image.asset(
-                                                  "asset/image/instagram.png",
-                                                  width: 30,
-                                                  height: 30,
+                                              if (actor['external_ids']
+                                                      ['instagram_id'] !=
+                                                  null)
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(horizontal: 8),
+                                                  child: Image.asset(
+                                                    "asset/image/instagram.png",
+                                                    width: 30,
+                                                    height: 30,
+                                                  ),
                                                 ),
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 5),
-                                                child: Image.asset(
-                                                  "asset/image/facebook.png",
-                                                  width: 30,
-                                                  height: 30,
+                                              if (actor['external_ids']
+                                                      ['facebook_id'] !=
+                                                  null)
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(horizontal: 8),
+                                                  child: Image.asset(
+                                                    "asset/image/facebook.png",
+                                                    width: 30,
+                                                    height: 30,
+                                                  ),
                                                 ),
-                                              ),
-                                              Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 5),
-                                                child: Image.asset(
-                                                  "asset/image/twitter.png",
-                                                  width: 30,
-                                                  height: 30,
-                                                ),
-                                              )
+                                              if (actor['external_ids']
+                                                      ['twitter_id'] !=
+                                                  null)
+                                                Padding(
+                                                  padding: const EdgeInsets
+                                                      .symmetric(horizontal: 8),
+                                                  child: Image.asset(
+                                                    "asset/image/twitter.png",
+                                                    width: 30,
+                                                    height: 30,
+                                                  ),
+                                                )
                                             ],
                                           ),
                                         )
@@ -145,6 +155,8 @@ class Actorinfo extends StatelessWidget {
                                     const SizedBox(height: 20),
                                     if (actor['biography'] != null)
                                       Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
                                           const DescriptionLable(
                                               lable: "Biography"),
@@ -158,9 +170,18 @@ class Actorinfo extends StatelessWidget {
                                             null &&
                                         actor['movie_credits']['cast']
                                             .isNotEmpty)
-                                      ActorMovies(
-                                          movies: actor['movie_credits']
-                                              ['cast']),
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const DescriptionLable(
+                                              lable: "Movies"),
+                                          const SizedBox(height: 15),
+                                          ActorMovies(
+                                              movies: actor['movie_credits']
+                                                  ['cast']),
+                                        ],
+                                      ),
                                     const SizedBox(height: 20)
                                   ],
                                 ),

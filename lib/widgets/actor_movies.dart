@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:movies/utils/routes.dart';
 
 class ActorMovies extends StatelessWidget {
   const ActorMovies({Key? key, required this.movies}) : super(key: key);
@@ -27,6 +28,8 @@ class ActorMovies extends StatelessWidget {
               img = movies[index]['backdrop_path'];
             }
             return GestureDetector(
+              onTap: () => Navigator.pushNamed(context, Routes.movieInfo,
+                  arguments: movies[index]['id'].toString()),
               child: Container(
                 width: 175,
                 padding:

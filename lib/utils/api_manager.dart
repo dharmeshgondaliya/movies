@@ -7,7 +7,7 @@ class ApiManager {
     var res = await http.get(Uri.parse(url));
     Map data = json.decode(res.body);
     List movies = data['results'] ?? [];
-    if (UrlManager.nowPlaying < 2) yield movies;
+    yield movies;
   }
 
   Stream<Map> getMovie(String url) async* {

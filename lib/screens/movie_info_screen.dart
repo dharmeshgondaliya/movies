@@ -8,6 +8,7 @@ import 'package:movies/widgets/cast_and_crew_list.dart';
 import 'package:movies/widgets/description_lable.dart';
 import 'package:movies/widgets/description_text.dart';
 import 'package:movies/widgets/movie_info_shimmer.dart';
+import 'package:movies/widgets/video_list.dart';
 
 class Movieinfo extends StatelessWidget {
   Movieinfo({Key? key}) : super(key: key);
@@ -93,16 +94,21 @@ class Movieinfo extends StatelessWidget {
                                                 const Text(
                                                   "Vote Average",
                                                   style: TextStyle(
-                                                    fontSize: 15,
-                                                    fontFamily: "capriola",
-                                                    fontWeight: FontWeight.w500,
-                                                  ),
+                                                      fontSize: 15,
+                                                      fontFamily: "capriola",
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Flags
+                                                          .descriptionLable),
                                                 ),
                                                 Text(
                                                   moviedata['vote_average']
                                                       .toString(),
                                                   style: const TextStyle(
-                                                      fontFamily: "carme"),
+                                                    fontFamily: "carme",
+                                                    color:
+                                                        Flags.descriptiontext,
+                                                  ),
                                                 )
                                               ],
                                             ),
@@ -112,23 +118,35 @@ class Movieinfo extends StatelessWidget {
                                           Expanded(
                                             child: Column(
                                               children: [
-                                                const Text("Release Date",
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        fontFamily: "capriola",
-                                                        fontWeight:
-                                                            FontWeight.w500)),
+                                                const Text(
+                                                  "Release Date",
+                                                  style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontFamily: "capriola",
+                                                    fontWeight: FontWeight.w500,
+                                                    color:
+                                                        Flags.descriptionLable,
+                                                  ),
+                                                ),
                                                 Text(
                                                   moviedata['release_date']
                                                       .toString(),
                                                   style: const TextStyle(
-                                                      fontFamily: "carme"),
+                                                    fontFamily: "carme",
+                                                    color:
+                                                        Flags.descriptiontext,
+                                                  ),
                                                 ),
                                                 if ("${moviedata['status']}"
                                                     .isNotEmpty)
-                                                  Text("${moviedata['status']}",
-                                                      style: const TextStyle(
-                                                          fontFamily: "carme"))
+                                                  Text(
+                                                    "${moviedata['status']}",
+                                                    style: const TextStyle(
+                                                      fontFamily: "carme",
+                                                      color:
+                                                          Flags.descriptiontext,
+                                                    ),
+                                                  )
                                               ],
                                             ),
                                           ),
@@ -137,17 +155,25 @@ class Movieinfo extends StatelessWidget {
                                           Expanded(
                                             child: Column(
                                               children: [
-                                                const Text("Popularity",
-                                                    style: TextStyle(
-                                                        fontSize: 15,
-                                                        fontFamily: "capriola",
-                                                        fontWeight:
-                                                            FontWeight.w500)),
+                                                const Text(
+                                                  "Popularity",
+                                                  style: TextStyle(
+                                                      fontSize: 15,
+                                                      fontFamily: "capriola",
+                                                      fontWeight:
+                                                          FontWeight.w500,
+                                                      color: Flags
+                                                          .descriptionLable),
+                                                ),
                                                 Text(
-                                                    moviedata['popularity']
-                                                        .toString(),
-                                                    style: const TextStyle(
-                                                        fontFamily: "carme"))
+                                                  moviedata['popularity']
+                                                      .toString(),
+                                                  style: const TextStyle(
+                                                    fontFamily: "carme",
+                                                    color:
+                                                        Flags.descriptiontext,
+                                                  ),
+                                                )
                                               ],
                                             ),
                                           ),
@@ -214,10 +240,32 @@ class Movieinfo extends StatelessWidget {
                                           const SizedBox(height: 30)
                                         ],
                                       ),
+                                    if (moviedata['videos']['results'] !=
+                                            null &&
+                                        moviedata['videos']['results']
+                                            .isNotEmpty)
+                                      Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          const DescriptionLable(
+                                              lable: "Videos"),
+                                          const SizedBox(height: 15),
+                                          VideoList(
+                                              videos: moviedata['videos']
+                                                  ['results']),
+                                          const SizedBox(height: 30)
+                                        ],
+                                      ),
                                     if (moviedata['credits']['cast'] != null &&
                                         moviedata['credits']['cast'].isNotEmpty)
                                       Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
                                         children: [
+                                          const DescriptionLable(
+                                              lable: "Cast & Crew"),
+                                          const SizedBox(height: 15),
                                           CastAndCrewList(
                                               cast: moviedata['credits']
                                                   ['cast']),
